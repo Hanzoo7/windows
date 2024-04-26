@@ -1,0 +1,16 @@
+---
+# tasks file for win_firewall_rule
+- name: ensure firewall rules
+  win_firewall_rules:
+    name: "{{ name }}"
+    displayName: "{{ displayName }}"
+    localport: "{{ localport }}"
+    remoteport: "{{ remoteport }}"
+    action: "{{ action }}"
+    direction: "{{ direction }}"
+    protocol: "{{ protocol }}"
+    profiles: "{{ profiles }}"
+    state: "{{ state }}"
+    enabled: "{{ enabled }}"
+
+

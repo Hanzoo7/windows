@@ -1,0 +1,12 @@
+---
+# defaults file for win_firewall_rule
+name: ANSIBLE-TEST-RULE
+displayName: Ansible default win_firewall_rule displayname
+state: present
+localport:
+remoteport:
+action:
+direction:
+protocol:
+profiles:
+enabled:
