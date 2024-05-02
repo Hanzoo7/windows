@@ -1,0 +1,15 @@
+---
+# vars file for win_partitions
+ansible_ssh_user: devopsadmin
+ansible_ssh_pass: P@ssw0rd4SOLEX30
+ansible_ssh_port: 5986
+ansible_connection: winrm
+ansible_winrm_transport: basic
+ansible_winrm_server_cert_validation: ignore
+
+disk_number: 1
+partition_number: 2
+DriveLetter: E
+FileSystemLabel: test-drive
+Size: 10 GB
+

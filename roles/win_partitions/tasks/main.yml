@@ -1,0 +1,11 @@
+---
+# tasks file for win_partitions
+- name: ensure partition
+  win_partitions:
+    disk_number: "{{ disk_number }}"
+    partition_number: "{{ partition_number }}"
+    DriveLetter: "{{ DriveLetter }}"
+    FileSystem: "{{ FileSystem }}"
+    FileSystemLabel: "{{ FileSystemLabel }}"
+    Size: "{{ Size }}"
+    state: "{{ state }}"

@@ -1,0 +1,5 @@
+---
+# defaults file for win_partitions
+FileSystem: NTFS
+Size: 
+state: present
