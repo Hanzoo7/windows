@@ -108,7 +108,7 @@ $module = [Ansible.Basic.AnsibleModule]::Create($args, $spec)
  
 #region main
 try{
-    $resource = Get-Resources -name $module.params.name 
+    $resource = Get-Resources -parameters $module.params 
     $module.Result.message = $resource
 
     if ($resource){

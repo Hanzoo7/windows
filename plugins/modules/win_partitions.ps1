@@ -9,12 +9,12 @@
 
 function Get-Resources ($parameters){
     $resources = $null
-    $collect = Get-Disk | ? number -eq $parameters.diskNumber | Get-Partition | ? PartitionNumber -eq $parameters.partNumber
+    $collect = Get-Disk | ? number -eq $parameters.disk_number | Get-Partition | ? PartitionNumber -eq $parameters.partition_number
     
     if ($collect){
         $resources = [ordered]@{
-            "disk_number" = $parameters.diskNumber
-            "partition_number" = $parameters.partNumber
+            "disk_number" = $parameters.disk_number
+            "partition_number" = $parameters.partition_number
             "DriveLetter" = $collect.DriveLetter
             "FileSystem" = ($collect | get-volume).FileSystem 
             "FileSystemLabel" = ($collect | get-volume).FileSystemLabel
@@ -118,7 +118,7 @@ $module = [Ansible.Basic.AnsibleModule]::Create($args, $spec)
 
 #region main
 try{
-    $resource = Get-Resources -diskNumber $module.params.disk_number -partNumber $module.params.partition_number 
+    $resource = Get-Resources -parameters $module.params
     $module.Result.message = $resource
 
     if ($resource){
