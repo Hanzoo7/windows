@@ -7,23 +7,23 @@
 # 02/05/2024
 # initial release
 
-function Get-Resources ($diskNumber, $partNumber){
-    $partition = $null
-    $partition_get = Get-Disk | ? number -eq $diskNumber | Get-Partition | ? PartitionNumber -eq $partNumber
+function Get-Resources ($parameters){
+    $resources = $null
+    $collect = Get-Disk | ? number -eq $parameters.diskNumber | Get-Partition | ? PartitionNumber -eq $parameters.partNumber
     
-    if ($partition_get){
-        $partition = [ordered]@{
-            "disk_number" = $diskNumber
-            "partition_number" = $partNumber
-            "DriveLetter" = $partition_get.DriveLetter
-            "FileSystem" = ($partition_get | get-volume).FileSystem 
-            "FileSystemLabel" = ($partition_get | get-volume).FileSystemLabel
-            "Size" = $($partition_get.Size)
+    if ($collect){
+        $resources = [ordered]@{
+            "disk_number" = $parameters.diskNumber
+            "partition_number" = $parameters.partNumber
+            "DriveLetter" = $collect.DriveLetter
+            "FileSystem" = ($collect | get-volume).FileSystem 
+            "FileSystemLabel" = ($collect | get-volume).FileSystemLabel
+            "Size" = $($collect.Size)
             "state" = "present" 
         }
     }
 
-    return $partition
+    return $resources
 }
 
 function Create-Resources ($parameters){
@@ -64,7 +64,7 @@ function Test-Resources ($resource, $parameters){
 
 function Set-Resources ($resource, $parameters){
     if ($parameters.state -eq "absent"){
-        Remove-Partition -DriveLetter $resource.DriveLetter -confirm:$False
+        Remove-Partition -DriveLetter $parameters.DriveLetter -confirm:$False
         return "$($parameters.DriveLetter) removed"
     }  
     else{

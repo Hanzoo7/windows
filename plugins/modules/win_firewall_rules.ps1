@@ -7,29 +7,29 @@
 # 24/04/2024
 # initial release
 
-function Get-Resources ($name){
-    $fwrule = $null
-    $fwrule_get = Get-NetFirewallRule | ? name -eq $name 
+function Get-Resources ($parameters){
+    $resources = $null
+    $collect = Get-NetFirewallRule | ? name -eq $parameters.name 
     
     
-    if ($fwrule_get){
-        $filters = $fwrule_get | Get-NetFirewallPortFilter
+    if ($collect){
+        $filters = $collect | Get-NetFirewallPortFilter
         
-        $fwrule = [ordered]@{
-            "name" = $fwrule_get.Name;
-            "displayName" = $fwrule_get.DisplayName;
+        $resources = [ordered]@{
+            "name" = $collect.Name;
+            "displayName" = $collect.DisplayName;
             "localport" = $filters.LocalPort;
             "remoteport" = $filters.RemotePort;
-            "action" = $fwrule_get.Action.tostring();
-            "direction" = $(switch ($fwrule_get.Direction.tostring()){"Inbound"{"In"}"Outbound"{"Out"}});
+            "action" = $collect.Action.tostring();
+            "direction" = $(switch ($collect.Direction.tostring()){"Inbound"{"In"}"Outbound"{"Out"}});
             "protocol" = $filters.Protocol;
-            "profiles" = $(if ($fwrule_get.Profile.tostring() -eq "Any"){"Domain, Private, Public"}else{$fwrule_get.Profile.tostring()});
+            "profiles" = $(if ($collect.Profile.tostring() -eq "Any"){"Domain, Private, Public"}else{$collect.Profile.tostring()});
             "state" = "present"
-            "enabled" = $fwrule_get.Enabled.tostring();
+            "enabled" = $collect.Enabled.tostring();
         }
     }
 
-    return $fwrule
+    return $resources
 }
 
 function Create-Resources ($parameters){
@@ -105,7 +105,7 @@ $ErrorActionPreference = "Stop"
 $module = [Ansible.Basic.AnsibleModule]::Create($args, $spec)
 #endregion
 
-
+ 
 #region main
 try{
     $resource = Get-Resources -name $module.params.name 
