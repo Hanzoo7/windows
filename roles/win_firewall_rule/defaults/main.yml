@@ -3,10 +3,11 @@
 name: ANSIBLE-TEST-RULE
 displayName: Ansible default win_firewall_rule displayname
 state: present
-localport:
-remoteport:
-action:
-direction:
-protocol:
-profiles:
-enabled:
+localport: 'Any'
+remoteport: 'Any'
+action: 'Allow'
+direction: 'In'
+protocol: 'Tcp'
+profiles: Public
+enabled: 'False'
+state: 'Present'

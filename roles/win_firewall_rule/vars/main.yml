@@ -7,11 +7,3 @@ ansible_connection: winrm
 ansible_winrm_transport: basic
 ansible_winrm_server_cert_validation: ignore
 
-localport: 'Any'
-remoteport: 'Any'
-action: 'Allow'
-direction: 'In'
-protocol: 'Tcp'
-profiles: Public
-enabled: 'False'
-state: 'Present'
