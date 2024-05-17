@@ -1,0 +1,224 @@
+---
+# defaults file for server_config
+services:
+  - name: CryptSvc
+    DisplayName: Services de chiffrement
+    state: started
+  - name: Dnscache
+    DisplayName: Client DNS
+    state: started
+  - name: EventLog
+    DisplayName: Journal d’événements Windows
+    state: started
+  - name: EventSystem
+    DisplayName: Système d’événement COM+
+    state: started
+  - name: mpssvc
+    DisplayName: Pare-feu Windows Defender
+    state: started
+  - name: Netlogon
+    DisplayName: Netlogon
+    state: started
+features:
+  - name: File-Services
+    state: present
+  - name: PowerShell
+    state: present
+  - name: XPS-Viewer
+    state: present
+partitions:
+  DriveLetter: C
+  FileSystem: NTFS
+  disk_number: 0
+  partition_number: 2
+  state: present
+softwares:
+  name: Oracle VM VirtualBox Guest Additions 7.0.14
+  Version: 7.0.14.161095
+  InstallLocation: null
+  Publisher: Oracle and/or its affiliates
+firewall_policies:
+  - name: Microsoft-Windows-DeviceManagement-OmaDmClient-TCP-Out
+    displayName: Client de synchronisation de la gestion des périphériques de Windows
+      (TCP sortant)
+    localport: Any
+    remoteport: Any
+    action: Allow
+    direction: Out
+    protocol: TCP
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'
+  - name: FPS-LLMNR-Out-UDP
+    displayName: Partage de fichiers et d’imprimantes (LLMNR-UDP-Out)
+    localport: Any
+    remoteport: '5355'
+    action: Allow
+    direction: Out
+    protocol: UDP
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'
+  - name: FPS-LLMNR-In-UDP
+    displayName: Partage de fichiers et d’imprimantes (LLMNR-UDP-In)
+    localport: '5355'
+    remoteport: Any
+    action: Allow
+    direction: In
+    protocol: UDP
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'
+  - name: FPS-ICMP6-ERQ-Out
+    displayName: Partage de fichiers et d’imprimantes (Demande d’écho - ICMPv6 sortant)
+    localport: RPC
+    remoteport: Any
+    action: Allow
+    direction: Out
+    protocol: ICMPv6
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'
+  - name: FPS-ICMP6-ERQ-In
+    displayName: Partage de fichiers et d’imprimantes (Demande d’écho - ICMPv6 entrant)
+    localport: RPC
+    remoteport: Any
+    action: Allow
+    direction: In
+    protocol: ICMPv6
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'
+  - name: FPS-ICMP4-ERQ-Out
+    displayName: Partage de fichiers et d’imprimantes (Demande d’écho - Trafic sortant
+      ICMPv4)
+    localport: RPC
+    remoteport: Any
+    action: Allow
+    direction: Out
+    protocol: ICMPv4
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'
+  - name: FPS-ICMP4-ERQ-In
+    displayName: Partage de fichiers et d’imprimantes (Demande d’écho - Trafic entrant
+      ICMPv4)
+    localport: RPC
+    remoteport: Any
+    action: Allow
+    direction: In
+    protocol: ICMPv4
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'
+  - name: FPS-RPCSS-In-TCP
+    displayName: Partage de fichiers et d’imprimantes (Service Spouleur - RPC-EPMAP)
+    localport: RPCEPMap
+    remoteport: Any
+    action: Allow
+    direction: In
+    protocol: TCP
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'
+  - name: FPS-SpoolSvc-In-TCP
+    displayName: Partage de fichiers et d’imprimantes (service Spouleur - RPC)
+    localport: RPC
+    remoteport: Any
+    action: Allow
+    direction: In
+    protocol: TCP
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'
+  - name: FPS-NB_Datagram-Out-UDP
+    displayName: Partage de fichiers et d’imprimantes (NB-Datagramme-Sortie)
+    localport: Any
+    remoteport: '138'
+    action: Allow
+    direction: Out
+    protocol: UDP
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'
+  - name: FPS-NB_Datagram-In-UDP
+    displayName: Partage de fichiers et d’imprimantes (NB-Datagramme-Entrée)
+    localport: '138'
+    remoteport: Any
+    action: Allow
+    direction: In
+    protocol: UDP
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'
+  - name: FPS-NB_Name-Out-UDP
+    displayName: Partage de fichiers et d’imprimantes (NB-Nom-Sortie)
+    localport: Any
+    remoteport: '137'
+    action: Allow
+    direction: Out
+    protocol: UDP
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'
+  - name: FPS-NB_Name-In-UDP
+    displayName: Partage de fichiers et d’imprimantes (NB-Nom-Entrée)
+    localport: '137'
+    remoteport: Any
+    action: Allow
+    direction: In
+    protocol: UDP
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'
+  - name: FPS-SMB-Out-TCP
+    displayName: Partage de fichiers et d’imprimantes (SMB-Sortie)
+    localport: Any
+    remoteport: '445'
+    action: Allow
+    direction: Out
+    protocol: TCP
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'
+  - name: FPS-SMB-In-TCP
+    displayName: Partage de fichiers et d’imprimantes (SMB-Entrée)
+    localport: '445'
+    remoteport: Any
+    action: Allow
+    direction: In
+    protocol: TCP
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'
+  - name: FPS-NB_Session-Out-TCP
+    displayName: Partage de fichiers et d’imprimantes (NB-Session-Sortie)
+    localport: Any
+    remoteport: '139'
+    action: Allow
+    direction: Out
+    protocol: TCP
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'
+  - name: FPS-NB_Session-In-TCP
+    displayName: Partage de fichiers et d’imprimantes (NB-Session-Entrée)
+    localport: '139'
+    remoteport: Any
+    action: Allow
+    direction: In
+    protocol: TCP
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'
+  - name: Microsoft-Windows-DeviceManagement-CertificateInstall-TCP-Out
+    displayName: Programme d'installation du certificat de gestion des périphériques
+      Windows (TCP sortant)
+    localport: Any
+    remoteport: Any
+    action: Allow
+    direction: Out
+    protocol: TCP
+    profiles: Domain, Private, Public
+    state: present
+    enabled: 'True'

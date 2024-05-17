@@ -1,0 +1,17 @@
+---
+# tasks file for server_config
+
+- name: ensure services
+  include_tasks: services.yml
+
+- name: ensure features
+  include_tasks: features.yml
+
+- name: ensure partitions
+  include_tasks: partitions.yml
+
+- name: ensure softwares
+  include_tasks: softwares.yml
+
+- name: ensure firewall_policies
+  include_tasks: firewall_policies.yml
