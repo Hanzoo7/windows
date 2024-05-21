@@ -1,0 +1,4 @@
+---
+# tasks file for ad_config
+- name: ensure domain
+  include_tasks: domain.yml

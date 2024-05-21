@@ -2,23 +2,29 @@
 # defaults file for server_config
 services:
   - name: CryptSvc
-    DisplayName: Services de chiffrement
+    displayName: Services de chiffrement
+    start_mode: auto
     state: started
   - name: Dnscache
-    DisplayName: Client DNS
+    displayName: Client DNS
     state: started
+    start_mode: auto
   - name: EventLog
-    DisplayName: Journal d’événements Windows
+    displayName: Journal d’événements Windows
     state: started
+    start_mode: auto
   - name: EventSystem
-    DisplayName: Système d’événement COM+
+    displayName: Système d’événement COM+
     state: started
+    start_mode: auto
   - name: mpssvc
-    DisplayName: Pare-feu Windows Defender
+    displayName: Pare-feu Windows Defender
     state: started
+    start_mode: auto
   - name: Netlogon
     DisplayName: Netlogon
     state: started
+    start_mode: auto
 features:
   - name: File-Services
     state: present
@@ -27,16 +33,22 @@ features:
   - name: XPS-Viewer
     state: present
 partitions:
-  DriveLetter: C
-  FileSystem: NTFS
-  disk_number: 0
-  partition_number: 2
-  state: present
-softwares:
-  name: Oracle VM VirtualBox Guest Additions 7.0.14
-  Version: 7.0.14.161095
-  InstallLocation: null
-  Publisher: Oracle and/or its affiliates
+  - DriveLetter: E
+    FileSystem: NTFS
+    disk_number: 1
+    partition_number: 2
+    FileSystemLabel: test-drive
+    Size: 49.98 GB
+    state: present
+packages:
+  - name: Oracle VM VirtualBox Guest Additions 7.0.14
+    Version: 7.0.14.161095
+    Source: null
+    InstallLocation: null
+    Publisher: Oracle and/or its affiliates
+    install_arguments: /quiet /norestart
+    uninstall_arguments: /uninstall /quiet
+    state: present
 firewall_policies:
   - name: Microsoft-Windows-DeviceManagement-OmaDmClient-TCP-Out
     displayName: Client de synchronisation de la gestion des périphériques de Windows

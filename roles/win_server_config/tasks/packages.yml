@@ -1,0 +1,6 @@
+- name: ensure packages
+  ansible.windows.win_package:
+    path : "{{item.Source }}"
+    arguments: "{{ item.install_arguments }}"
+    state: "{{ item.state }}"
+  loop: "{{ packages }}"

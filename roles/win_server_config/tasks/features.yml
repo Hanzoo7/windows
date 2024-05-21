@@ -1,0 +1,5 @@
+- name: ensure features
+  ansible.windows.win_feature:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  loop: "{{ features }}"

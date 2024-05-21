@@ -1,0 +1,17 @@
+- name: ensure domain
+  ansible.windows.win_domain:
+    dns_domain_name: "{{ domain.Name }}"
+    safe_mode_password: "{{ safe_mode_password }}"
+#    NetBIOSName: 
+#    DNSRoot: 
+#    DomainMode: 
+#    ReplicaDirectoryServers:
+#    DatabasePath: 
+#    SysvolPath: 
+#    fsmo:
+#      PDCEmulator: 
+#      DomainNamingMaster: 
+#      InfrastructureMaster: 
+#      RIDMaster: 
+#      SchemaMaster: 
+

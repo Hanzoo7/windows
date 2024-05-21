@@ -1,0 +1,11 @@
+
+- name: ensure partitions
+  win_partitions:
+    disk_number: "{{ item.disk_number }}"
+    partition_number: "{{ item.partition_number }}"
+    DriveLetter: "{{ item.DriveLetter }}"
+    FileSystem: "{{ item.FileSystem }}"
+    FileSystemLabel: "{{ item.FileSystemLabel }}"
+    Size: "{{ item.Size }}"
+    state: "{{ item.state }}"
+  loop: "{{ partitions }}"

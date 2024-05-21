@@ -1,0 +1,14 @@
+
+- name: ensure firewall policies
+  win_firewall_rules:
+    name: "{{ item.name }}"
+    displayName: "{{ item.displayName }}"
+    localport: "{{ item.localport }}"
+    remoteport: "{{ item.remoteport }}"
+    action: "{{ item.action }}"
+    direction: "{{ item.direction }}"
+    protocol: "{{ item.protocol }}"
+    profiles: "{{ item.profiles }}"
+    state: "{{ item.state }}"
+    enabled: "{{ item.enabled }}"
+  loop: "{{ firewall_policies }}"

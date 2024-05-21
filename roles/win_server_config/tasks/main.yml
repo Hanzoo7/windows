@@ -10,8 +10,8 @@
 - name: ensure partitions
   include_tasks: partitions.yml
 
-- name: ensure softwares
-  include_tasks: softwares.yml
+- name: ensure packages
+  include_tasks: packages.yml
 
 - name: ensure firewall_policies
   include_tasks: firewall_policies.yml

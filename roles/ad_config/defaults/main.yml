@@ -1,0 +1,351 @@
+---
+# defaults file for ad_config
+domain:
+  Name: devopslab
+  NetBIOSName: DEVOPSLAB
+  DNSRoot: devopslab.org
+  DomainMode: Windows2016Domain
+  ReplicaDirectoryServers:
+    - W2019-1.devopslab.org
+  DatabasePath: C:\Windows\NTDS
+  SysvolPath: C:\Windows\SYSVOL
+  fsmo:
+    PDCEmulator: W2019-1.devopslab.org
+    DomainNamingMaster: W2019-1.devopslab.org
+    InfrastructureMaster: W2019-1.devopslab.org
+    RIDMaster: W2019-1.devopslab.org
+    SchemaMaster: W2019-1.devopslab.org
+groups:
+  - CN: Administrateurs
+    DistinguishedName: CN=Administrateurs,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members:
+      - Name: Admins du domaine
+        ObjectClass: group
+      - Name: Administrateurs de l’entreprise
+        ObjectClass: group
+      - Name: devopsadmin
+        ObjectClass: user
+      - Name: Administrateur
+        ObjectClass: user
+  - CN: Utilisateurs
+    DistinguishedName: CN=Utilisateurs,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members:
+      - Name: Utilisateurs du domaine
+        ObjectClass: group
+      - Name: S-1-5-11
+        ObjectClass: foreignSecurityPrincipal
+      - Name: S-1-5-4
+        ObjectClass: foreignSecurityPrincipal
+  - CN: Invités
+    DistinguishedName: CN=Invités,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members:
+      - Name: Invités du domaine
+        ObjectClass: group
+      - Name: Invité
+        ObjectClass: user
+  - CN: Opérateurs d’impression
+    DistinguishedName: CN=Opérateurs d’impression,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Opérateurs de sauvegarde
+    DistinguishedName: CN=Opérateurs de sauvegarde,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Duplicateurs
+    DistinguishedName: CN=Duplicateurs,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Utilisateurs du Bureau à distance
+    DistinguishedName: CN=Utilisateurs du Bureau à distance,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Opérateurs de configuration réseau
+    DistinguishedName: CN=Opérateurs de configuration réseau,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Utilisateurs de l’Analyseur de performances
+    DistinguishedName: CN=Utilisateurs de l’Analyseur de performances,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Utilisateurs du journal de performances
+    DistinguishedName: CN=Utilisateurs du journal de performances,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Utilisateurs du modèle COM distribué
+    DistinguishedName: CN=Utilisateurs du modèle COM distribué,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: IIS_IUSRS
+    DistinguishedName: CN=IIS_IUSRS,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members:
+      Name: S-1-5-17
+      ObjectClass: foreignSecurityPrincipal
+  - CN: Opérateurs de chiffrement
+    DistinguishedName: CN=Opérateurs de chiffrement,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Lecteurs des journaux d’événements
+    DistinguishedName: CN=Lecteurs des journaux d’événements,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Accès DCOM service de certificats
+    DistinguishedName: CN=Accès DCOM service de certificats,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Serveurs Accès Distant RDS
+    DistinguishedName: CN=Serveurs Accès Distant RDS,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Serveurs RDS Endpoint
+    DistinguishedName: CN=Serveurs RDS Endpoint,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Serveurs Gestion RDS
+    DistinguishedName: CN=Serveurs Gestion RDS,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Administrateurs Hyper-V
+    DistinguishedName: CN=Administrateurs Hyper-V,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Opérateurs d'assistance de contrôle d'accès
+    DistinguishedName: CN=Opérateurs d'assistance de contrôle d'accès,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Utilisateurs de gestion à distance
+    DistinguishedName: CN=Utilisateurs de gestion à distance,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Storage Replica Administrators
+    DistinguishedName: CN=Storage Replica Administrators,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Ordinateurs du domaine
+    DistinguishedName: CN=Ordinateurs du domaine,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: Global
+    Members: {}
+  - CN: Contrôleurs de domaine
+    DistinguishedName: CN=Contrôleurs de domaine,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: Global
+    Members: {}
+  - CN: Administrateurs du schéma
+    DistinguishedName: CN=Administrateurs du schéma,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: Universal
+    Members:
+      Name: Administrateur
+      ObjectClass: user
+  - CN: Administrateurs de l’entreprise
+    DistinguishedName: CN=Administrateurs de l’entreprise,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: Universal
+    Members:
+      Name: Administrateur
+      ObjectClass: user
+  - CN: Éditeurs de certificats
+    DistinguishedName: CN=Éditeurs de certificats,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Admins du domaine
+    DistinguishedName: CN=Admins du domaine,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: Global
+    Members:
+      Name: Administrateur
+      ObjectClass: user
+  - CN: Utilisateurs du domaine
+    DistinguishedName: CN=Utilisateurs du domaine,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: Global
+    Members: {}
+  - CN: Invités du domaine
+    DistinguishedName: CN=Invités du domaine,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: Global
+    Members: {}
+  - CN: Propriétaires créateurs de la stratégie de groupe
+    DistinguishedName: CN=Propriétaires créateurs de la stratégie de groupe,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: Global
+    Members:
+      Name: Administrateur
+      ObjectClass: user
+  - CN: Serveurs RAS et IAS
+    DistinguishedName: CN=Serveurs RAS et IAS,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Opérateurs de serveur
+    DistinguishedName: CN=Opérateurs de serveur,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Opérateurs de compte
+    DistinguishedName: CN=Opérateurs de compte,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Accès compatible pré-Windows 2000
+    DistinguishedName: CN=Accès compatible pré-Windows 2000,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members:
+      Name: S-1-5-11
+      ObjectClass: foreignSecurityPrincipal
+  - CN: Générateurs d’approbations de forêt entrante
+    DistinguishedName: CN=Générateurs d’approbations de forêt entrante,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Groupe d’accès d’autorisation Windows
+    DistinguishedName: CN=Groupe d’accès d’autorisation Windows,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members:
+      Name: S-1-5-9
+      ObjectClass: foreignSecurityPrincipal
+  - CN: Serveurs de licences des services Terminal Server
+    DistinguishedName: CN=Serveurs de licences des services Terminal Server,CN=Builtin,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Groupe de réplication dont le mot de passe RODC est autorisé
+    DistinguishedName: CN=Groupe de réplication dont le mot de passe RODC est autorisé,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: Groupe de réplication dont le mot de passe RODC est refusé
+    DistinguishedName: CN=Groupe de réplication dont le mot de passe RODC est refusé,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members:
+      - Name: Contrôleurs de domaine en lecture seule
+        ObjectClass: group
+      - Name: Propriétaires créateurs de la stratégie de groupe
+        ObjectClass: group
+      - Name: Admins du domaine
+        ObjectClass: group
+      - Name: Éditeurs de certificats
+        ObjectClass: group
+      - Name: Administrateurs de l’entreprise
+        ObjectClass: group
+      - Name: Administrateurs du schéma
+        ObjectClass: group
+      - Name: Contrôleurs de domaine
+        ObjectClass: group
+      - Name: krbtgt
+        ObjectClass: user
+  - CN: Contrôleurs de domaine en lecture seule
+    DistinguishedName: CN=Contrôleurs de domaine en lecture seule,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: Global
+    Members: {}
+  - CN: Contrôleurs de domaine d’entreprise en lecture seule
+    DistinguishedName: CN=Contrôleurs de domaine d’entreprise en lecture seule,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: Universal
+    Members: {}
+  - CN: Contrôleurs de domaine clonables
+    DistinguishedName: CN=Contrôleurs de domaine clonables,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: Global
+    Members: {}
+  - CN: Protected Users
+    DistinguishedName: CN=Protected Users,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: Global
+    Members: {}
+  - CN: Administrateurs clés
+    DistinguishedName: CN=Administrateurs clés,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: Global
+    Members: {}
+  - CN: Administrateurs clés Enterprise
+    DistinguishedName: CN=Administrateurs clés Enterprise,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: Universal
+    Members: {}
+  - CN: DnsAdmins
+    DistinguishedName: CN=DnsAdmins,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: DomainLocal
+    Members: {}
+  - CN: DnsUpdateProxy
+    DistinguishedName: CN=DnsUpdateProxy,CN=Users,DC=devopslab,DC=org
+    GroupCategory: Security
+    GroupScope: Global
+    Members: {}
+users:
+  - Name: Administrateur
+    DistinguishedName: CN=Administrateur,CN=Users,DC=devopslab,DC=org
+    GivenName: null
+    Surname: null
+    Enabled: true
+    PasswordNeverExpires: true
+    Description: Compte d’utilisateur d’administration
+    EmailAddress: null
+    lastLogon: 08/04/2024 10:41:00
+  - Name: Invité
+    DistinguishedName: CN=Invité,CN=Users,DC=devopslab,DC=org
+    GivenName: null
+    Surname: null
+    Enabled: false
+    PasswordNeverExpires: true
+    Description: Compte d’utilisateur invité
+    EmailAddress: null
+    lastLogon: 01/01/1601 01:00:00
+  - Name: devopsadmin
+    DistinguishedName: CN=devopsadmin,CN=Users,DC=devopslab,DC=org
+    GivenName: null
+    Surname: null
+    Enabled: true
+    PasswordNeverExpires: true
+    Description: null
+    EmailAddress: null
+    lastLogon: 21/05/2024 17:48:15
+  - Name: krbtgt
+    DistinguishedName: CN=krbtgt,CN=Users,DC=devopslab,DC=org
+    GivenName: null
+    Surname: null
+    Enabled: false
+    PasswordNeverExpires: false
+    Description: Compte de service du centre de distribution de clés
+    EmailAddress: null
+    lastLogon: 01/01/1601 01:00:00
+computers:
+  Name: W2019-1
+  DistinguishedName: CN=W2019-1,OU=Domain Controllers,DC=devopslab,DC=org
+  DNSHostName: W2019-1.devopslab.org
+  Enabled: true
+  IPv4Address: 10.0.4.6
+  OperatingSystem: Windows Server 2019 Standard
+  OperatingSystemVersion: 10.0 (17763)

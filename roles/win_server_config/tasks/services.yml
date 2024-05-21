@@ -1,6 +1,6 @@
 - name: ensure services
   ansible.windows.win_service:
     name: "{{ item.name }}"
-    start_mode: "{{ item.start_mode }}"
+    start_mode: "{{ item.startMode }}"
     state: "{{ item.state }}"
   loop: "{{ services }}"
