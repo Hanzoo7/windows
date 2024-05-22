@@ -1,14 +1,12 @@
 ---
 # defaults file for ad_config
 domain:
-  Name: devopslab
-  NetBIOSName: DEVOPSLAB
-  DNSRoot: devopslab.org
-  DomainMode: Windows2016Domain
-  ReplicaDirectoryServers:
+  dns_domain_name: devopslab.org
+  domain_netbios_name: DEVOPSLAB
+  domain_controllers:
     - W2019-1.devopslab.org
-  DatabasePath: C:\Windows\NTDS
-  SysvolPath: C:\Windows\SYSVOL
+  database_path: C:\Windows\NTDS
+  sysvol_path: C:\Windows\SYSVOL
   fsmo:
     PDCEmulator: W2019-1.devopslab.org
     DomainNamingMaster: W2019-1.devopslab.org
@@ -28,6 +26,8 @@ groups:
       - Name: devopsadmin
         ObjectClass: user
       - Name: Administrateur
+        ObjectClass: user
+      - Name: TestAdmin
         ObjectClass: user
   - CN: Utilisateurs
     DistinguishedName: CN=Utilisateurs,CN=Builtin,DC=devopslab,DC=org
@@ -305,42 +305,25 @@ groups:
     GroupScope: Global
     Members: {}
 users:
-  - Name: Administrateur
-    DistinguishedName: CN=Administrateur,CN=Users,DC=devopslab,DC=org
-    GivenName: null
-    Surname: null
-    Enabled: true
-    PasswordNeverExpires: true
-    Description: Compte d’utilisateur d’administration
-    EmailAddress: null
-    lastLogon: 08/04/2024 10:41:00
-  - Name: Invité
-    DistinguishedName: CN=Invité,CN=Users,DC=devopslab,DC=org
-    GivenName: null
-    Surname: null
-    Enabled: false
-    PasswordNeverExpires: true
-    Description: Compte d’utilisateur invité
-    EmailAddress: null
-    lastLogon: 01/01/1601 01:00:00
   - Name: devopsadmin
     DistinguishedName: CN=devopsadmin,CN=Users,DC=devopslab,DC=org
-    GivenName: null
-    Surname: null
+    GivenName: devops
+    Surname: admin
     Enabled: true
     PasswordNeverExpires: true
     Description: null
     EmailAddress: null
     lastLogon: 21/05/2024 17:48:15
-  - Name: krbtgt
-    DistinguishedName: CN=krbtgt,CN=Users,DC=devopslab,DC=org
-    GivenName: null
-    Surname: null
-    Enabled: false
+    state: present
+  - Name: TestAdmin
+    DistinguishedName: CN=TestAdmin,CN=Users,DC=devopslab,DC=org
+    ResetDefaultPassword:
+    Surname: admin
+    Enabled: true
     PasswordNeverExpires: false
-    Description: Compte de service du centre de distribution de clés
-    EmailAddress: null
-    lastLogon: 01/01/1601 01:00:00
+    Description: test admin deployed by Ansible
+    EmailAddress: test.admin@devops.org
+    state: present
 computers:
   Name: W2019-1
   DistinguishedName: CN=W2019-1,OU=Domain Controllers,DC=devopslab,DC=org

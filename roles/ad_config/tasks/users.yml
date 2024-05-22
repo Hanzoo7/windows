@@ -1,0 +1,13 @@
+- name: ensure users
+  community.windows.win_domain_user:
+    name: "{{ item.Name }}"
+    firstname: "{{ item.GivenName | default(omit)}}"
+    surname: "{{ item.Surname | default(omit) }}"
+    path: "{{ item.DistinguishedName | default(omit) }}"
+    password: "{{ item.ResetDefaultPassword | default(omit) | default(omit) }}"
+    display_name: "{{ item.Name }}"
+    state: "{{ item.state | default(omit)}}"
+  loop: "{{ users }}"
+  when: item.Name not in ("Administrator","Guest","krbtgt","Administrateur","Invité")
+
+  
